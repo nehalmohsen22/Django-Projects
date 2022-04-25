@@ -30,8 +30,9 @@ def api_add_student(request):
 
 @api_view(['POST'])
 def api_edit_student(request, st_id):
+    print(request.data)
     st = Student.objects.get(id = st_id)
-    st_ser = StudentSerializer(instance =st, data= request.data)
+    st_ser = StudentSerializer(instance =st, data = request.data)
     if st_ser.is_valid():
         st_ser.save()
         return redirect('api-all')
